@@ -18,10 +18,22 @@ app.post("/clientes", (req, res) => {
         // resposta
         res.status(201).json({resposta: "Cliente cadastrado!"})
     } catch (erro) {
-        res.status(500).json({erro: erro.messagw})
+        res.status(500).json({erro: erro.message})
+    }
+})
+
+app.get ("/clientes", (req, res) => {
+    try {
+        // abrir o arquivo
+        const bd = JSON.parse(fs.readFileSync("bd.json", "utf8"))
+        res.status(200).json({resposta: bd})
+    } catch (erro) {
+        res.status(500).json({erro: erro.message})
     }
 })
 
 app.listen(port, ()=>{
     console.log("API executando na porta "+ port)
 })
+
+// GET ​http://localhost:3000/clientes
